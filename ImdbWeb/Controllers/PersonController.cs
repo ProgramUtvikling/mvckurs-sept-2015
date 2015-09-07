@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace ImdbWeb.Controllers
 {
+	[RoutePrefix("Person")]
     public class PersonController : Controller
     {
 		public string Actors()
@@ -20,6 +21,8 @@ namespace ImdbWeb.Controllers
 		{
 			return "PersonController.Directors()";
 		}
+
+		[Route("{id:int}")]
 		public string Details(int id)
 		{
 			return $"PersonController.Details({id})";
