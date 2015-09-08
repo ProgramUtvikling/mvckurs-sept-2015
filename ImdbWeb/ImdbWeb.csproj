@@ -126,6 +126,7 @@
     <Content Include="Views\Person\Index.cshtml" />
     <Content Include="Views\Person\Details.cshtml" />
     <Content Include="Views\Movie\_PersonListing.cshtml" />
+    <Content Include="Views\Movie\_NoMovie.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

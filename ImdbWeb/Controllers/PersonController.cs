@@ -51,9 +51,13 @@ namespace ImdbWeb.Controllers
 		}
 
 		[Route("{id:int}")]
-		public ViewResult Details(int id)
+		public ActionResult Details(int id)
 		{
 			var person = _db.Persons.Find(id);
+			if (person == null)
+			{
+				return HttpNotFound();
+			}
 
 			ViewData.Model = person;
 			return View();

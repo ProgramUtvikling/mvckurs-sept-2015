@@ -26,9 +26,13 @@ namespace ImdbWeb.Controllers
 			ViewData.Model = _db.Movies;
 			return View();
 		}
-		public ViewResult Details(string id)
+		public ActionResult Details(string id)
 		{
 			var movie = _db.Movies.Find(id);
+			if(movie == null)
+			{
+				return HttpNotFound();
+			}
 
 			ViewData.Model = movie;
 			return View();

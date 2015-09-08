@@ -11,7 +11,11 @@ namespace ImdbWeb
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+			ViewEngines.Engines.Clear();
+			ViewEngines.Engines.Add(new RazorViewEngine());
+
+
+            //AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
