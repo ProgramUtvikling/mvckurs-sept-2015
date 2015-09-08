@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Person>
+<p>(Vi er i ett view)</p>
+<ul>
+	@foreach (var person in Model)
+	{
+		<li>
+			@Html.ActionLink(person.Name, "Details", "Person", new { id = person.PersonId }, null)
+		</li>
+	}
+</ul>

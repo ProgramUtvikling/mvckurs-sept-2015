@@ -1,4 +1,5 @@
-﻿@model Movie
+﻿@using ImdbWeb.Helpers
+@model Movie
 
 <h2>@Model.Title (@Model.ProductionYear)</h2>
 <p>@Model.OriginalTitle</p>
@@ -8,35 +9,20 @@
 	Genre: @Model.Genre.Name
 	<br />
 	Production year: @Model.ProductionYear
+	<br />
+	Regisører: @Html.PrettyJoin(Model.Directors)
+	<br />
+	Produsenter: @Html.PrettyJoin(Model.Producers)
 </div>
 <p>@Model.Description</p>
 
 <h3>Skuespillere</h3>
-<ul>
-	@foreach (var person in Model.Actors)
-	{
-		<li>
-			@Html.ActionLink(person.Name, "Details", "Person", new { id = person.PersonId}, null)
-		</li>
-	}
-</ul>
+@Html.Partial("_PersonListing", Model.Actors)
 
-<h3>Produsenter</h3>
-<ul>
-	@foreach (var person in Model.Producers)
-	{
-		<li>
-			@Html.ActionLink(person.Name, "Details", "Person", new { id = person.PersonId }, null)
-		</li>
-	}
-</ul>
+@*<h3>Produsenter</h3>
+@Html.Partial("_PersonListing", Model.Producers)
 
 <h3>Regisører</h3>
-<ul>
-	@foreach (var person in Model.Directors)
-	{
-		<li>
-			@Html.ActionLink(person.Name, "Details", "Person", new { id = person.PersonId }, null)
-		</li>
-	}
-</ul>
+@Html.Partial("_PersonListing", Model.Directors)*@
+
+

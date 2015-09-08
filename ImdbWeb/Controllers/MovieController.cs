@@ -42,6 +42,10 @@ namespace ImdbWeb.Controllers
 		public ViewResult MoviesByGenre(string genrename)
 		{
 			ViewData.Model = _db.Movies.Where(m => m.Genre.Name == genrename);
+			
+			ViewBag.Genre = genrename;
+			//ViewData["Genre"] = genrename;
+
 			return View("Index");
 		}
 	}

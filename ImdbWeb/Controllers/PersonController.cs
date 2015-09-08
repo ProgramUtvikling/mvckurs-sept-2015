@@ -1,4 +1,5 @@
-﻿using MovieDAL;
+﻿using ImdbWeb.Models.PersonModels;
+using MovieDAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace ImdbWeb.Controllers
 						  where person.ActedMovies.Any()
 						  select person;
 
-			ViewData.Model = persons;
+			ViewData.Model = new PersonIndexModel { Title = "skuespillere", Persons = persons };
 			return View("Index");
 		}
 		public ViewResult Producers()
@@ -36,7 +37,7 @@ namespace ImdbWeb.Controllers
 						  where person.ProducedMovies.Any()
 						  select person;
 
-			ViewData.Model = persons;
+			ViewData.Model = new PersonIndexModel { Title = "produsenter", Persons = persons };
 			return View("Index");
 		}
 		public ViewResult Directors()
@@ -45,7 +46,7 @@ namespace ImdbWeb.Controllers
 						  where person.DirectedMovies.Any()
 						  select person;
 
-			ViewData.Model = persons;
+			ViewData.Model = new PersonIndexModel { Title = "regisører", Persons = persons };
 			return View("Index");
 		}
 

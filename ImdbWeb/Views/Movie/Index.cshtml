@@ -1,7 +1,11 @@
 ﻿@model IEnumerable<Movie>
+@{
+	ViewBag.Title = ViewBag.Genre ?? "Liste over filmer";
+}
 
 
 <h2>Liste over filmer</h2>
+<h3>@ViewBag.Genre</h3>
 
 <ul>
 @foreach (var movie in Model.OrderBy(m => m.Title))
