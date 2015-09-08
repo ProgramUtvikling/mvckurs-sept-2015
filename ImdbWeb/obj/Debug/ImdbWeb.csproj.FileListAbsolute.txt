@@ -31,3 +31,9 @@ C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\System.Web.Mvc.xml
 C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\obj\Debug\ImdbWeb.csprojResolveAssemblyReference.cache
 C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\obj\Debug\ImdbWeb.dll
 C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\obj\Debug\ImdbWeb.pdb
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\EntityFramework.dll
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\EntityFramework.SqlServer.dll
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\MovieDAL.dll
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\MovieDAL.pdb
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\EntityFramework.xml
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\EntityFramework.SqlServer.xml

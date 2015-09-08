@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieDAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,14 @@ namespace ImdbWeb.Controllers
 {
     public class MovieController : Controller
     {
-		public string Index()
+		public ViewResult Index()
 		{
-			return "MovieController.Index()";
+			var db = new ImdbContext();
+
+			var movies = db.Movies;
+			ViewData.Model = movies;
+
+			return View();
 		}
 		public string Details(string id)
 		{
