@@ -1,24 +1,14 @@
 ﻿@using MovieDAL
 @model IEnumerable<Movie>
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-	<h1>Liste over @Model.Count filmer</h1>
-	
+	<h1>Liste over @Model.Count() filmer</h1>
+
 	<ul>
-	@foreach (var movie in Model)
-	{
-		<li>@movie.Title</li>
-	}
+		@foreach (var movie in Model)
+		{
+			<li>
+				@Html.ActionLink(movie.Title, "Details", "Movie", new { id=movie.MovieId }, new { @class = "some-css-class" })
+			</li>
+		}
 	</ul>
-</body>
-</html>

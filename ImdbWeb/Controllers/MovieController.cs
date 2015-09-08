@@ -18,9 +18,14 @@ namespace ImdbWeb.Controllers
 
 			return View();
 		}
-		public string Details(string id)
+		public ViewResult Details(string id)
 		{
-			return $"MovieController.Details({id})";
+			var db = new ImdbContext();
+
+			var movie = db.Movies.Find(id);
+			ViewData.Model = movie;
+
+			return View();
 		}
 		public string Genres()
 		{
