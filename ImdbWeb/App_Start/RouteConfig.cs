@@ -16,17 +16,14 @@ namespace ImdbWeb
 			routes.MapMvcAttributeRoutes();
 
 
-			routes.MapRoute("Movie by id", "m-{id}", new { Controller = "Movie", Action = "Details" });
+			//routes.MapRoute("Movies by Genre route",
+			//	"Movie/Genre/{genrename}", new { Controller = "Movie", Action = "MoviesByGenre" });
 
-			routes.MapRoute("Movies by Genre route",
-				"Movie/Genre/{genrename}", new { Controller = "Movie", Action = "MoviesByGenre" });
-
-			routes.MapRoute("Person Details route",
-				"Person/{id}", new { Controller = "Person", Action = "Details" }, new { id=@"\d+" });
+			//routes.MapRoute("Person Details route",
+			//	"Person/{id}", new { Controller = "Person", Action = "Details" }, new { id=@"\d+" });
 
 			//routes.MapRoute("Cover Image route",
 			//	"Image/{format}/{id}.jpg", new { Controller = "Image", Action = "CreateImage" });  
-
 
 
 			routes.MapRoute(

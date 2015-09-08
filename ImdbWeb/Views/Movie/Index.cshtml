@@ -1,14 +1,13 @@
-﻿@using MovieDAL
-@model IEnumerable<Movie>
+﻿@model IEnumerable<Movie>
 
 
-	<h1>Liste over @Model.Count() filmer</h1>
+<h2>Liste over filmer</h2>
 
-	<ul>
-		@foreach (var movie in Model)
-		{
-			<li>
-				@Html.ActionLink(movie.Title, "Details", "Movie", new { id=movie.MovieId }, new { @class = "some-css-class" })
-			</li>
-		}
-	</ul>
+<ul>
+@foreach (var movie in Model.OrderBy(m => m.Title))
+{
+	<li>
+		@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, new { @class = "some-css-class" })
+	</li>
+}
+</ul>

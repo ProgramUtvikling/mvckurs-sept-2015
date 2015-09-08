@@ -1,5 +1,42 @@
-﻿@model MovieDAL.Movie
+﻿@model Movie
 
+<h2>@Model.Title (@Model.ProductionYear)</h2>
+<p>@Model.OriginalTitle</p>
+<div>
+	Running length: @Model.RunningLength minutes
+	<br />
+	Genre: @Model.Genre.Name
+	<br />
+	Production year: @Model.ProductionYear
+</div>
+<p>@Model.Description</p>
 
-	<h1>@Model.Title (@Model.ProductionYear)</h1>
-	<p>@Model.Description</p>
+<h3>Skuespillere</h3>
+<ul>
+	@foreach (var person in Model.Actors)
+	{
+		<li>
+			@Html.ActionLink(person.Name, "Details", "Person", new { id = person.PersonId}, null)
+		</li>
+	}
+</ul>
+
+<h3>Produsenter</h3>
+<ul>
+	@foreach (var person in Model.Producers)
+	{
+		<li>
+			@Html.ActionLink(person.Name, "Details", "Person", new { id = person.PersonId }, null)
+		</li>
+	}
+</ul>
+
+<h3>Regisører</h3>
+<ul>
+	@foreach (var person in Model.Directors)
+	{
+		<li>
+			@Html.ActionLink(person.Name, "Details", "Person", new { id = person.PersonId }, null)
+		</li>
+	}
+</ul>

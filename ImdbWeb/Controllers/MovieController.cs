@@ -7,33 +7,42 @@ using System.Web.Mvc;
 
 namespace ImdbWeb.Controllers
 {
+	[RoutePrefix("Movie")]
     public class MovieController : Controller
     {
+		private ImdbContext _db = new ImdbContext();
+
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing)
+			{
+				_db.Dispose();
+			}
+			base.Dispose(disposing);
+		}
+
 		public ViewResult Index()
 		{
-			var db = new ImdbContext();
-
-			var movies = db.Movies;
-			ViewData.Model = movies;
-
+			ViewData.Model = _db.Movies;
 			return View();
 		}
 		public ViewResult Details(string id)
 		{
-			var db = new ImdbContext();
+			var movie = _db.Movies.Find(id);
 
-			var movie = db.Movies.Find(id);
 			ViewData.Model = movie;
-
 			return View();
 		}
-		public string Genres()
+		public ViewResult Genres()
 		{
-			return "MovieController.Genres()";
+			ViewData.Model = _db.Genres;
+			return View();
 		}
-		public string MoviesByGenre(string genrename)
+		[Route("Genre/{genrename:alpha}")]
+		public ViewResult MoviesByGenre(string genrename)
 		{
-			return $"MovieController.MovieByGenre({genrename})";
+			ViewData.Model = _db.Movies.Where(m => m.Genre.Name == genrename);
+			return View("Index");
 		}
 	}
 }
