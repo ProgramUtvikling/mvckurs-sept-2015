@@ -700,6 +700,7 @@
     <Content Include="Views\Account\LoggedOn.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="App_Code\Cover.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

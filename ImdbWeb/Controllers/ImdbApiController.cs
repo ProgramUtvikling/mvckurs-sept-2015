@@ -10,33 +10,33 @@ namespace ImdbWeb.Controllers
 {
     public class ImdbApiController : ImdbControllerBase
     {
-		//public ActionResult Movies(string fmt = "xml")
-		//{
-		//	switch (fmt.ToLower())
-		//	{
-		//		case "xml": return MoviesAsXml();
-		//		case "json": return MoviesAsJson();
+		public ActionResult Movies(string fmt = "xml")
+		{
+			switch (fmt.ToLower())
+			{
+				case "xml": return MoviesAsXml();
+				case "json": return MoviesAsJson();
 
-		//		default:
-		//			return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
-		//	}
-		//}
+				default:
+					return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
+			}
+		}
 
-		//private ActionResult MoviesAsXml()
-        public ActionResult Movies(string fmt = "xml")
+		private ActionResult MoviesAsXml()
 		{
 			var doc = new XElement("movies", from movie in Db.Movies.ToList()
 											 select new XElement("movie",
 												new XAttribute("id", movie.MovieId),
 												movie.Title));
 
-			return Content(doc.ToString());
+			return Content(doc.ToString(), "application/xml");
 		}
 
 		private ActionResult MoviesAsJson()
 		{
 			var doc = from movie in Db.Movies
 					  select new { id= movie.MovieId, title= movie.Title};
+
 			return Json(doc, JsonRequestBehavior.AllowGet);
 		}
 
@@ -61,7 +61,7 @@ namespace ImdbWeb.Controllers
 				new XCData(movie.Description)
 				);
 
-			return Content(doc.ToString());
+			return Content(doc.ToString(), "application/xml");
 		}
 	}
 }

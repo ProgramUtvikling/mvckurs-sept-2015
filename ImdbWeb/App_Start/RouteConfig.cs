@@ -18,7 +18,7 @@ namespace ImdbWeb
 
 
 			//routes.MapRoute("Movies by Genre route",
-			//	"Movie/Genre/{genrename}", new { Controller = "Movie", Action = "MoviesByGenre" });
+			//	"Movie/Genre/{genrename}", new { Controller = "Movie", Action = "MoviesByGenre" }, ns);
 
 			//routes.MapRoute("Person Details route",
 			//	"Person/{id}", new { Controller = "Person", Action = "Details" }, new { id=@"\d+" });
@@ -31,7 +31,7 @@ namespace ImdbWeb
 				name: "Default",
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-				//, namespaces: ns
+				, namespaces: ns
 			);
 		}
 	}

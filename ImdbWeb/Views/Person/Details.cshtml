@@ -20,7 +20,7 @@
 			@foreach (var movie in movies)
 			{
 				<li>
-					<img src="@Url.Action("CreateImage", "Image", new { format="thumb", id = movie.MovieId })" />
+                    @Cover.Thumb(movie)
 					@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, null)
 				</li>
 			}
