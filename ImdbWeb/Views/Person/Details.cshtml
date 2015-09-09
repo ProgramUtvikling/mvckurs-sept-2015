@@ -1,0 +1,26 @@
+﻿@model Person
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+@MovieListing(Model.ActedMovies, "Spilt i")
+@MovieListing(Model.ProducedMovies, "Produsert")
+@MovieListing(Model.DirectedMovies, "Regisert")
+
+
+
+@helper MovieListing(IEnumerable<Movie> movies, string title)
+{
+	if (movies.Any())
+	{
+		<h3>@title</h3>
+		<ul>
+			@foreach (var movie in movies)
+		{
+				<li>@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, null)</li>
+		}
+		</ul>
+	}
+}

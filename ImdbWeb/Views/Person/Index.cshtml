@@ -1,0 +1,32 @@
+﻿@model ImdbWeb.Models.PersonModels.PersonIndexModel
+@{
+	ViewBag.Title = "Index";
+
+	var groups = from person in Model.Persons
+				 orderby person.Name
+				 group person by person.Name.Substring(0, 1).ToUpper() into g
+				 select new { Firstletter = g.Key, Persons = g };
+}
+
+<h2>Liste over @Model.Title</h2>
+
+<div>
+	@foreach (var group in groups)
+	{
+		<a href="#@group.Firstletter">@group.Firstletter</a>
+	}
+</div>
+
+@foreach (var group in groups)
+{
+	<h3 id="@group.Firstletter">@group.Firstletter</h3>
+	<ul>
+		@foreach (var person in group.Persons)
+		{
+			<li>
+				@Html.ActionLink(person.Name, "Details", new { id = person.PersonId })
+			</li>
+		}
+	</ul>
+}
+
