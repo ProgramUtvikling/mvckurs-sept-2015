@@ -9,22 +9,11 @@ using System.Web.Mvc;
 namespace ImdbWeb.Controllers
 {
 	[RoutePrefix("Person")]
-    public class PersonController : Controller
+    public class PersonController : ImdbControllerBase
     {
-		private ImdbContext _db = new ImdbContext();
-
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing)
-			{
-				_db.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-
 		public ViewResult Actors()
 		{
-			var persons = from person in _db.Persons
+			var persons = from person in Db.Persons
 						  where person.ActedMovies.Any()
 						  select person;
 
@@ -33,7 +22,7 @@ namespace ImdbWeb.Controllers
 		}
 		public ViewResult Producers()
 		{
-			var persons = from person in _db.Persons
+			var persons = from person in Db.Persons
 						  where person.ProducedMovies.Any()
 						  select person;
 
@@ -42,7 +31,7 @@ namespace ImdbWeb.Controllers
 		}
 		public ViewResult Directors()
 		{
-			var persons = from person in _db.Persons
+			var persons = from person in Db.Persons
 						  where person.DirectedMovies.Any()
 						  select person;
 
@@ -53,7 +42,7 @@ namespace ImdbWeb.Controllers
 		[Route("{id:int}")]
 		public ActionResult Details(int id)
 		{
-			var person = _db.Persons.Find(id);
+			var person = Db.Persons.Find(id);
 			if (person == null)
 			{
 				return HttpNotFound();

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace ImdbWeb.Controllers
 {
-    public class HomeController : Controller
+	public class HomeController : Controller
     {
 		public ViewResult Index()
 		{
@@ -15,6 +15,7 @@ namespace ImdbWeb.Controllers
 
 		public ViewResult Demo()
 		{
+			throw new Exception();
 			return View();
 		}
     }

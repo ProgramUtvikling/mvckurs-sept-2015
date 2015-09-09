@@ -14,9 +14,10 @@ namespace ImdbWeb
 			ViewEngines.Engines.Clear();
 			ViewEngines.Engines.Add(new RazorViewEngine());
 
+			FilterConfig.RegisterFilters(GlobalFilters.Filters);
 
-            //AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+			AreaRegistration.RegisterAllAreas();
+			RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }

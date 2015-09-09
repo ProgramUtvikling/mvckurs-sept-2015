@@ -8,27 +8,17 @@ using System.Web.Mvc;
 namespace ImdbWeb.Controllers
 {
 	[RoutePrefix("Movie")]
-    public class MovieController : Controller
+    public class MovieController : ImdbControllerBase
     {
-		private ImdbContext _db = new ImdbContext();
-
-		protected override void Dispose(bool disposing)
+		public ActionResult Index()
 		{
-			if (disposing)
-			{
-				_db.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-
-		public ViewResult Index()
-		{
-			ViewData.Model = _db.Movies;
+			ViewData.Model = Db.Movies;
 			return View();
 		}
+
 		public ActionResult Details(string id)
 		{
-			var movie = _db.Movies.Find(id);
+			var movie = Db.Movies.Find(id);
 			if(movie == null)
 			{
 				return HttpNotFound();
@@ -37,15 +27,15 @@ namespace ImdbWeb.Controllers
 			ViewData.Model = movie;
 			return View();
 		}
-		public ViewResult Genres()
+		public ActionResult Genres()
 		{
-			ViewData.Model = _db.Genres;
+			ViewData.Model = Db.Genres;
 			return View();
 		}
 		[Route("Genre/{genrename:alpha}")]
-		public ViewResult MoviesByGenre(string genrename)
+		public ActionResult MoviesByGenre(string genrename)
 		{
-			ViewData.Model = _db.Movies.Where(m => m.Genre.Name == genrename);
+			ViewData.Model = Db.Movies.Where(m => m.Genre.Name == genrename);
 			
 			ViewBag.Genre = genrename;
 			//ViewData["Genre"] = genrename;

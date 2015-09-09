@@ -11,7 +11,8 @@ namespace ImdbWeb
 	{
 		public static void RegisterRoutes(RouteCollection routes)
 		{
-			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+			var ns = new[] { "ImdbWeb.Controllers" };
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 			routes.MapMvcAttributeRoutes();
 
@@ -30,6 +31,7 @@ namespace ImdbWeb
 				name: "Default",
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+				//, namespaces: ns
 			);
 		}
 	}

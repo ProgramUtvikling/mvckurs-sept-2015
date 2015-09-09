@@ -18,9 +18,12 @@
 		<h3>@title</h3>
 		<ul>
 			@foreach (var movie in movies)
-		{
-				<li>@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, null)</li>
-		}
+			{
+				<li>
+					<img src="@Url.Action("CreateImage", "Image", new { format="thumb", id = movie.MovieId })" />
+					@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, null)
+				</li>
+			}
 		</ul>
 	}
 }
