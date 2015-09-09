@@ -682,6 +682,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MyHtmlHelpers.cs" />
+    <Compile Include="Models\AccountModels\LogonModel.cs" />
     <Compile Include="Models\PersonModels\PersonIndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -701,6 +702,8 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="App_Code\Cover.cshtml" />
+    <Content Include="Views\Account\_LoggedIn.cshtml" />
+    <Content Include="Views\Account\_NotLoggedIn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
