@@ -1,0 +1,19 @@
+﻿@model ImdbWeb.Models.DemoModels.DemoModel
+
+@{
+    ViewBag.Title = "Demo";
+}
+
+<h2>Demo</h2>
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.LabelFor(m => m.Overskrift)
+	@Html.EditorFor(m => m.Overskrift)
+	<br />
+	@Html.LabelFor(m => m.Kommentar)
+	@Html.EditorFor(m => m.Kommentar)
+	<br />
+	<button>Trykk her!</button>
+}
+

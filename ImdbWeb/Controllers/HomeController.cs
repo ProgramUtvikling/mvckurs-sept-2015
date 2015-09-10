@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ImdbWeb.Models.DemoModels;
+using Microsoft.Security.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,8 +17,18 @@ namespace ImdbWeb.Controllers
 
 		public ViewResult Demo()
 		{
-			throw new Exception();
 			return View();
 		}
-    }
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ViewResult Demo(DemoModel model)
+		{
+			model.Kommentar = Sanitizer.GetSafeHtmlFragment(model.Kommentar);
+
+
+			ViewData.Model = model;
+			return View("DemoResult");
+		}
+	}
 }

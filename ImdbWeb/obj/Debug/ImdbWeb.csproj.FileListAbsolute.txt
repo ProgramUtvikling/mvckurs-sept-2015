@@ -37,3 +37,7 @@ C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\MovieDAL.dll
 C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\MovieDAL.pdb
 C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\EntityFramework.xml
 C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\EntityFramework.SqlServer.xml
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\AntiXssLibrary.dll
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\HtmlSanitizationLibrary.dll
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\AntiXssLibrary.xml
+C:\Studenmaterials\AspNetMvcStarter\ImdbWeb\bin\HtmlSanitizationLibrary.xml

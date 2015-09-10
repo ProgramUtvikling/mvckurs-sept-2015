@@ -17,16 +17,25 @@ namespace ImdbWeb.Controllers
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		[AllowAnonymous]
-		public ActionResult Logon(LogonModel model)
+		public ActionResult Logon(LogonModel model, string returnUrl)
 		{
-			if(model.Username=="arjan" && model.Password == "pass")
+			if (ModelState.IsValid)
 			{
-				FormsAuthentication.SetAuthCookie(model.Username, false);
+				if (model.Username == "arjan" && model.Password == "pass")
+				{
+					FormsAuthentication.SetAuthCookie(model.Username, model.RememberMe);
 
-				return RedirectToAction("LoggedOn");
+					if(!string.IsNullOrWhiteSpace(returnUrl))
+					{
+						return Redirect(returnUrl);
+					}
+					return RedirectToAction("Index", "Home");
+				}
+
+				ModelState.AddModelError("", "Ukjent brukernavn og/eller feil passord");
 			}
-
 			return View();
 		}
 

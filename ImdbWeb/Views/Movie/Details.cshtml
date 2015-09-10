@@ -5,9 +5,9 @@
 <div>
     @Cover.Medium(Model)
 	<br />
-	Running length: @Model.RunningLength minutes
+	Running length: @Html.DisplayFor(m => m.RunningLength, "Duration") minutes
 	<br />
-	Genre: @Model.Genre.Name
+	Genre: @Html.DisplayFor(m => m.Genre.Name)
 	<br />
 	Production year: @Model.ProductionYear
 	<br />
