@@ -4,7 +4,9 @@ using MovieDAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -13,26 +15,26 @@ namespace ImdbWeb.Areas.Admin.Controllers
 	[Authorize]
 	public class MovieController : ImdbControllerBase
 	{
-		public ActionResult Index()
+		public async Task<ActionResult> Index()
 		{
-			ViewData.Model = Db.Movies.Select(m => new MovieIndexModel
+			ViewData.Model = await Db.Movies.Select(m => new MovieIndexModel
 			{
 				Id = m.MovieId,
 				Title = m.Title,
 				RunningLength = m.RunningLength
-			});
+			}).ToListAsync();
 
 			return View();
 		}
-		public ActionResult Create()
+		public async Task<ActionResult> Create()
 		{
-			ViewBag.Genres = new SelectList(Db.Genres, "GenreId", "Name");
+			ViewBag.Genres = new SelectList(await Db.Genres.ToListAsync(), "GenreId", "Name");
 			return View();
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(MovieCreateModel model)
+		public async Task<ActionResult> Create(MovieCreateModel model)
 		{
 			if (ModelState.IsValid)
 			{
@@ -44,21 +46,21 @@ namespace ImdbWeb.Areas.Admin.Controllers
 					Description = model.Description,
 					ProductionYear = model.ProductionYear,
 					RunningLength = model.RunningLengthHours * 60 + model.RunningLengthMinutes,
-					Genre = Db.Genres.Find(model.GenreId)
+					Genre = await Db.Genres.FindAsync(model.GenreId)
 				};
 				Db.Movies.Add(movie);
-				Db.SaveChanges();
+				await Db.SaveChangesAsync();
 
 				return RedirectToAction("Index");
 			}
 
-			return Create();
+			return await Create();
 		}
 
 		public static ValidationResult CheckIdLocal(string movieId)
 		{
 			var db = new ImdbContext();
-			if(db.Movies.Any(m => m.MovieId == movieId))
+			if (db.Movies.Any(m => m.MovieId == movieId))
 			{
 				return new ValidationResult("Filmen er allerede registrert");
 			}
@@ -66,9 +68,9 @@ namespace ImdbWeb.Areas.Admin.Controllers
 			return ValidationResult.Success;
 		}
 
-		public ActionResult Delete(string id)
+		public async Task<ActionResult> Delete(string id)
 		{
-			var movie = Db.Movies.Find(id);
+			var movie = await Db.Movies.FindAsync(id);
 			if (movie == null)
 			{
 				return HttpNotFound();
@@ -86,7 +88,8 @@ namespace ImdbWeb.Areas.Admin.Controllers
 
 		[HttpDelete]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(string id, string søppel)
+		[ActionName("Delete")]
+		public async Task<ActionResult> DeleteConfirmed(string id)
 		{
 			var movie = Db.Movies.Find(id);
 			if (movie == null)
@@ -95,7 +98,7 @@ namespace ImdbWeb.Areas.Admin.Controllers
 			}
 
 			Db.Movies.Remove(movie);
-			Db.SaveChanges();
+			await Db.SaveChangesAsync();
 
 			return RedirectToAction("Index");
 		}
