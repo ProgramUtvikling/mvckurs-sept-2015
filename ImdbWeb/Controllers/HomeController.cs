@@ -3,6 +3,7 @@ using Microsoft.Security.Application;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -22,12 +23,20 @@ namespace ImdbWeb.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ViewResult Demo(DemoModel model)
+		public ActionResult Demo(DemoModel model)
 		{
+			Thread.Sleep(3000);
+
 			model.Kommentar = Sanitizer.GetSafeHtmlFragment(model.Kommentar);
 
 
 			ViewData.Model = model;
+
+			if (Request.IsAjaxRequest())
+			{
+				return PartialView("DemoResult");
+			}
+
 			return View("DemoResult");
 		}
 	}

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ImdbWeb.Areas.Admin.Models.MovieModels
 {
@@ -14,6 +15,7 @@ namespace ImdbWeb.Areas.Admin.Models.MovieModels
 		[Required]
 		[MaxLength(30)]
 		[CustomValidation(typeof(MovieController), "CheckIdLocal")]
+		[Remote("CheckIdRemote", "Movie", HttpMethod ="POST")]
 		public string MovieId { get; set; }
 
 		[Display(Name="Tittel")]

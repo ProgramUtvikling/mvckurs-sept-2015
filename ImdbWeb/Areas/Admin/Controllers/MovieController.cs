@@ -62,10 +62,21 @@ namespace ImdbWeb.Areas.Admin.Controllers
 			var db = new ImdbContext();
 			if (db.Movies.Any(m => m.MovieId == movieId))
 			{
-				return new ValidationResult("Filmen er allerede registrert");
+				return new ValidationResult("Filmen er allerede registrert (local)");
 			}
 
 			return ValidationResult.Success;
+		}
+
+		public ActionResult CheckIdRemote(string movieId)
+		{
+			if (Db.Movies.Any(m => m.MovieId == movieId))
+			{
+				return Json("Filmen er allerede registrert (remote)");
+			}
+
+			return Json(true);
+
 		}
 
 		public async Task<ActionResult> Delete(string id)

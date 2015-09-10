@@ -5,7 +5,11 @@
 }
 
 <h2>Demo</h2>
-@using (Html.BeginForm())
+@using (Ajax.BeginForm(new AjaxOptions {
+	UpdateTargetId = "cph",
+	LoadingElementId = "waiting",
+	LoadingElementDuration = 200
+}))
 {
 	@Html.AntiForgeryToken()
 	@Html.LabelFor(m => m.Overskrift)
@@ -16,4 +20,11 @@
 	<br />
 	<button>Trykk her!</button>
 }
+<hr />
+<div id="waiting" style="display: none;">
+	<img src="~/Content/ajax-loader.gif" />
+</div>
+<div id="cph">
+	...
+</div>
 
