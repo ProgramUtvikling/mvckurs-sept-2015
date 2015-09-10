@@ -65,5 +65,39 @@ namespace ImdbWeb.Areas.Admin.Controllers
 
 			return ValidationResult.Success;
 		}
+
+		public ActionResult Delete(string id)
+		{
+			var movie = Db.Movies.Find(id);
+			if (movie == null)
+			{
+				return HttpNotFound();
+			}
+
+			ViewData.Model = new MovieDeleteModel
+			{
+				MovieId = movie.MovieId,
+				Title = movie.Title,
+				OriginalTitle = movie.OriginalTitle,
+				ProductionYear = movie.ProductionYear
+			};
+			return View();
+		}
+
+		[HttpDelete]
+		[ValidateAntiForgeryToken]
+		public ActionResult Delete(string id, string søppel)
+		{
+			var movie = Db.Movies.Find(id);
+			if (movie == null)
+			{
+				return HttpNotFound();
+			}
+
+			Db.Movies.Remove(movie);
+			Db.SaveChanges();
+
+			return RedirectToAction("Index");
+		}
 	}
 }
