@@ -2,6 +2,18 @@
 
 <h2>@Model.Title (@Model.ProductionYear)</h2>
 <p>@Model.OriginalTitle</p>
+
+<section id="voting">
+	@using (Ajax.BeginForm("Vote", new { id = Model.MovieId}, new AjaxOptions { UpdateTargetId="voting" }))
+	{
+		<text>
+		@Html.AntiForgeryToken()
+		Gi din stemme: @Html.DropDownList("vote", new SelectList(new[] {1,2,3,4,5 }), "-- velg --")
+		<button>Send inn!</button>
+		</text>
+	}
+</section>
+
 <div>
     @Cover.Medium(Model)
 	<br />

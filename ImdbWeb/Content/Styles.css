@@ -1,6 +1,31 @@
-﻿body {
+﻿@import url('popup.css');
+
+body {
 	font-family: sans-serif;
 	background: linear-gradient(lightgray 0px, transparent 100%) no-repeat;
 	background-size: 100% 70px;
 	padding: 0;
+}
+
+#voting{
+	height: 4em;
+}
+
+/* css */
+
+.field-validaton-valid { display: none; }
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border: thin solid red;
+    background-color: hsl(0, 100%, 90%);
+}
+
+.validation-summary-valid { display: none; }
+
+.validation-summary-errors {
+    color: red;
 }

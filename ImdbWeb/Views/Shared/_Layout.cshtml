@@ -13,7 +13,11 @@
 	<footer>
 		<div>Copyright &copy; 2015 Megselv</div>
 	</footer>
-	<script src="~/Scripts/jquery-2.1.4.min.js"></script>
-	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+	@*<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+
+	@RenderSection("scripts", false)
 </body>
 </html>

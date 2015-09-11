@@ -20,10 +20,20 @@
 			@foreach (var movie in movies)
 			{
 				<li>
-                    @Cover.Thumb(movie)
-					@Html.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, null)
+					@Cover.Thumb(movie)
+					@Ajax.ActionLink(movie.Title, "Details", "Movie", new { id = movie.MovieId }, new AjaxOptions
+			   {
+				   UpdateTargetId = "popup",
+				   OnBegin = "dimBackground()",
+				   OnSuccess = "showPopup()",
+				   OnFailure = "resetBackground()"
+			   })
 				</li>
 			}
 		</ul>
 	}
+}
+
+@section Scripts{
+	<script src="~/Scripts/popup.js"></script>
 }

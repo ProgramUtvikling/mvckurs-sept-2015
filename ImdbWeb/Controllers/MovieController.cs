@@ -1,4 +1,5 @@
-﻿using MovieDAL;
+﻿using ImdbWeb.Models.MovieModels;
+using MovieDAL;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -27,6 +28,10 @@ namespace ImdbWeb.Controllers
 			}
 
 			ViewData.Model = movie;
+			if (Request.IsAjaxRequest())
+			{
+				return PartialView();
+			}
 			return View();
 		}
 		public async Task<ActionResult> Genres()
@@ -43,6 +48,35 @@ namespace ImdbWeb.Controllers
 			//ViewData["Genre"] = genrename;
 
 			return View("Index");
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> Vote(string id, int vote)
+		{
+			var movie = await Db.Movies.FindAsync(id);
+			if (movie == null)
+			{
+				return HttpNotFound();
+			}
+
+			movie.Ratings.Add(new Rating { Vote = vote });
+			await Db.SaveChangesAsync();
+
+			ViewData.Model = new VoteResultModel {
+				MovieId = id,
+				YourVote = vote,
+				VoteCount = movie.Ratings.Count(),
+				AverageVote = movie.Ratings.Average(m => m.Vote)
+			};
+
+			if(Request.IsAjaxRequest())
+			{
+				return PartialView("_VoteResult");
+			}
+
+			return PartialView("VoteResult");
+
 		}
 	}
 }

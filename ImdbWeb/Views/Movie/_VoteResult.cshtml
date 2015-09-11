@@ -1,0 +1,12 @@
+﻿@model ImdbWeb.Models.MovieModels.VoteResultModel
+
+@{
+    ViewBag.Title = "_VoteResult";
+}
+
+Takk for at du stemte. Du ga filmen @Model.YourVote.
+<br />
+@if(Model.VoteCount > 3)
+{
+	@:Snitt etter @Model.VoteCount stemmer er @Model.AverageVote.ToString("F1").
+}
