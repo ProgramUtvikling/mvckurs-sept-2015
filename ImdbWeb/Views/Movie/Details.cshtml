@@ -4,12 +4,15 @@
 <p>@Model.OriginalTitle</p>
 
 <section id="voting">
-	@using (Ajax.BeginForm("Vote", new { id = Model.MovieId}, new AjaxOptions { UpdateTargetId="voting" }))
+	@using (Ajax.BeginForm("Vote", new { id = Model.MovieId }, new AjaxOptions { UpdateTargetId = "voting" }))
 	{
 		<text>
-		@Html.AntiForgeryToken()
-		Gi din stemme: @Html.DropDownList("vote", new SelectList(new[] {1,2,3,4,5 }), "-- velg --")
-		<button>Send inn!</button>
+			@Html.AntiForgeryToken()
+			<button name="vote" value="1" class="star"></button><!--
+			--><button name="vote" value="2" class="star"></button><!--
+			--><button name="vote" value="3" class="star"></button><!--
+			--><button name="vote" value="4" class="star"></button><!--
+			--><button name="vote" value="5" class="star"></button>
 		</text>
 	}
 </section>

@@ -678,6 +678,9 @@
     <Content Include="Content\geo-bootstrap.css" />
     <Content Include="Content\popup.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\star-off.png" />
+    <Content Include="Content\star-on.png" />
+    <Content Include="Content\star-pending.png" />
     <Content Include="Content\Styles.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

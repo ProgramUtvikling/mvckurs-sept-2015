@@ -7,25 +7,63 @@ body {
 	padding: 0;
 }
 
-#voting{
+#voting {
 	height: 4em;
 }
 
 /* css */
 
-.field-validaton-valid { display: none; }
+.field-validaton-valid {
+	display: none;
+}
 
 .field-validation-error {
-    color: red;
+	color: red;
 }
 
 .input-validation-error {
-    border: thin solid red;
-    background-color: hsl(0, 100%, 90%);
+	border: thin solid red;
+	background-color: hsl(0, 100%, 90%);
 }
 
-.validation-summary-valid { display: none; }
+.validation-summary-valid {
+	display: none;
+}
 
 .validation-summary-errors {
-    color: red;
+	color: red;
+}
+
+li {
+	border: thin solid gray;
+	padding: 0 3px;
+}
+
+	li + li {
+		border-top: none;
+	}
+
+
+
+li:hover{
+	background-color: red;
+	transition: .3s;
+	padding-left: 30px;
+}
+
+
+
+.star {
+	height: 21px;
+	width: 21px;
+	border: none;
+	background-image: url('star-pending.png');
+}
+
+*:hover > .star {
+	background-image: url('star-on.png');
+}
+
+.star:hover ~ .star {
+	background-image: url('star-off.png');
 }
