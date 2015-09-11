@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<h1>Dette er HtmlPage1.html</h1>
+	<button id="btn">Trykk for å hente data...</button>
+
+	<table>
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Tittel</td>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: $data">
+			<tr>
+				<td data-bind="text: id"></td>
+				<td data-bind="text: title"></td>
+			</tr>
+		</tbody>
+	</table>
+
+
+	<script src="Scripts/jquery-2.1.4.min.js"></script>
+	<script src="Scripts/knockout-3.3.0.js"></script>
+	<script>
+		$("#btn").click(function () {
+
+			$.ajax({
+				url: '/ImdbApi/Movies?fmt=json'
+			}).then(function (res) {
+				ko.applyBindings(res);
+			});
+
+		});
+	</script>
+</body>
+</html>
